@@ -1,15 +1,62 @@
-# Docker PHP-FPM 8.0 and Nginx
+# WordPress Docker image for local development
 
-Notice: [I recommend this repository if you're looking for PHP with Xdebug 3](https://github.com/IshtarStar/docker-compose-nginx-phpfpm-xdebug-mariadb)
+@author: [Juergen Arne Klein](http://juergen-arne-klein.de)
 
-![nginx 1.20](https://img.shields.io/badge/nginx-brightgreen.svg)
-![php 8.0](https://img.shields.io/badge/php-fpm-brightgreen.svg)
-* 
-* Built on the lightweight
-* Multi-platform, supporting
-* Uses PHP 8.* for better performance, lower CPU and memory usage
-* Use only resources when traffic exists
-* KISS principle (Keep It Simple, Stupid)
+Adapted from https://registry.hub.docker.com/_/wordpress
 
-[Blog-Post: Dockerize your PHP application with Nginx and PHP8-FPM](https://marcit.eu/en/2021/04/28/dockerize-webserver-nginx-php8/)
+Before you begin: 
+
+1. add `127.10.10.10 wordpress.dck`  to your /etc/hosts file
+2. add IP `127.10.10.10` to your local network: `sudo ifconfig lo0 alias 127.0.4.1 `
+3. run `docker-compose up -d` in this directory
+
+Here is how the `docker-compose.y` file is supposed to look like: 
+
+````yaml
+version: '3.9'
+
+services:
+
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - "127.10.10.10:80:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress_user
+      WORDPRESS_DB_PASSWORD: wordpress_p4ssw0rd
+      WORDPRESS_DB_NAME: wordpress_db
+    volumes:
+      - wordpress:/var/www/html
+      - ./wp/themes:/var/www/html/wp-content/themes
+      - ./wp/plugins:/var/www/html/wp-content/plugins
+      - ./wp/config/wp-config-local.php:/var/www/html/wp-config.php
+      - ./wp/config/.htaccess:/var/www/html/.htaccess
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: wordpress_db
+      MYSQL_USER: wordpress_user
+      MYSQL_PASSWORD: wordpress_p4ssw0rd
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/logs:/var/log/mysql
+      - ./mysql/conf:/etc/mysql
+
+volumes:
+  wordpress:
+  
+````
+
+Please do not modify the files `./wp/config/.htaccess`  and `./wp/config/wp-config-local.php` .
+
+To login to WordPress use `user: admin`  and `pass: admin` 
+
+The directories `./wp/plugins`  and `./wp/themes`  hold the plugins and themes for development reasons.
+
+Happy coding
 

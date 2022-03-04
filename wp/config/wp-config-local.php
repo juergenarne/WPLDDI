@@ -75,14 +75,14 @@ define( 'DB_COLLATE', getenv_docker('WORDPRESS_DB_COLLATE', '') );
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',         getenv_docker('WORDPRESS_AUTH_KEY',         '9c95d480dfa21cb025cbc8ec73990e09b39073e3') );
-define( 'SECURE_AUTH_KEY',  getenv_docker('WORDPRESS_SECURE_AUTH_KEY',  '8470839f2b690310c0356be957bf8ecc81795362') );
-define( 'LOGGED_IN_KEY',    getenv_docker('WORDPRESS_LOGGED_IN_KEY',    'e0e623bddf9a331895c5ef20b4a69e35aa9937e1') );
-define( 'NONCE_KEY',        getenv_docker('WORDPRESS_NONCE_KEY',        '8a1485c14ccba7cf00bf85ce9ea2a24322b12301') );
-define( 'AUTH_SALT',        getenv_docker('WORDPRESS_AUTH_SALT',        '44a0eef0c2494408f7cddf3d30726e1f870c23eb') );
-define( 'SECURE_AUTH_SALT', getenv_docker('WORDPRESS_SECURE_AUTH_SALT', '806411e8f562faa1825ae18c26aab6125f152b80') );
-define( 'LOGGED_IN_SALT',   getenv_docker('WORDPRESS_LOGGED_IN_SALT',   '2f9dfed37c9276a381cb77dcb483fd9de2a55b7f') );
-define( 'NONCE_SALT',       getenv_docker('WORDPRESS_NONCE_SALT',       'c51bd369c51813e782c13a9bc7ba54a1b43cf39f') );
+define( 'AUTH_KEY',         getenv_docker('WORDPRESS_AUTH_KEY',         '0daf7b9c7bdd14b251018142ce9c6fd834896301') );
+define( 'SECURE_AUTH_KEY',  getenv_docker('WORDPRESS_SECURE_AUTH_KEY',  '2e135644f4392c29a9a5157f951bef2811f9df17') );
+define( 'LOGGED_IN_KEY',    getenv_docker('WORDPRESS_LOGGED_IN_KEY',    '24bc49c0999d61f4a3ca8524e1203c4227c1ce0f') );
+define( 'NONCE_KEY',        getenv_docker('WORDPRESS_NONCE_KEY',        '0f7d10e9b276d814c8ab7045c2ac9ca80620fa58') );
+define( 'AUTH_SALT',        getenv_docker('WORDPRESS_AUTH_SALT',        '6f53e4cc6afbb9af5883440179d96b3f1d17b86f') );
+define( 'SECURE_AUTH_SALT', getenv_docker('WORDPRESS_SECURE_AUTH_SALT', '9d950102eaa29d52c8df92204b691f1c1aaa37bb') );
+define( 'LOGGED_IN_SALT',   getenv_docker('WORDPRESS_LOGGED_IN_SALT',   '147680260938fb6fc9fe41ab36b35c1727b099b0') );
+define( 'NONCE_SALT',       getenv_docker('WORDPRESS_NONCE_SALT',       '6e6297bccbb973a9d782da0f25f4ced634176f71') );
 // (See also https://wordpress.stackexchange.com/a/152905/199287)
 
 /**#@-*/
@@ -123,6 +123,13 @@ if ($configExtra = getenv_docker('WORDPRESS_CONFIG_EXTRA', '')) {
 }
 
 define('WP_ALLOW_MULTISITE', true);
+
+define( 'MULTISITE', true );
+define( 'SUBDOMAIN_INSTALL', false );
+define( 'DOMAIN_CURRENT_SITE', 'wordpress.dck' );
+define( 'PATH_CURRENT_SITE', '/' );
+define( 'SITE_ID_CURRENT_SITE', 1 );
+define( 'BLOG_ID_CURRENT_SITE', 1 );
 
 /* That's all, stop editing! Happy publishing. */
 
