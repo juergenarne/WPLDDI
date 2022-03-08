@@ -8,6 +8,7 @@ Before you begin:
 
 1. add `127.10.10.10 wordpress.dck`  to your /etc/hosts file
 2. add IP `127.10.10.10` to your local network: `sudo ifconfig lo0 alias 127.10.10.10 `
+   (https://stackoverflow.com/questions/61688386/listen-tcp-127-0-4-12040-bind-cant-assign-requested-address)
 3. run `docker-compose up -d` in this directory
 
 Here is how the `docker-compose.y` file is supposed to look like: 
