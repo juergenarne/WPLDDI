@@ -355,6 +355,12 @@ if(isset($params['jstable']) && $params['jstable']==1):
                                         $data['files'] = WPDM()->package->getFiles($data['ID']);
                                         echo WPDM()->package->audioPlayer($data, true, 'success');
                                         break;
+	                                case (preg_match('/^acf_(.+)/', $c) && function_exists('\WPDM\AddOn\wpdm_acf') ? true : false) :
+		                                $value = \WPDM\AddOn\wpdm_acf($data['ID'], str_replace("acf_", "", $c), true);
+		                                $value = maybe_unserialize($value);
+		                                if (is_array($value)) $value = implode(", ", $value);
+		                                echo "<span class='__dt_acf {$c}'>" . $value . "</span>";
+		                                break;
                                     default:
                                         if(isset($data[$c])) {
                                             if ($cx > 0)
